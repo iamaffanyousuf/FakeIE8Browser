@@ -18,10 +18,7 @@
     "appId": "com.fake.ie8",
     "productName": "Internet Explorer",
     "win": {
-      "target": [
-        "portable"
-      ],
-      "icon": "assets/ie_icon.png",
+      "target": ["portable"],
       "requestedExecutionLevel": "asInvoker"
     }
   }
