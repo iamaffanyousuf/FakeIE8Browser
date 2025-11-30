@@ -1,0 +1,104 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Internet Explorer</title>
+  <style>
+    /* IE8-style classic blue gradient title bar */
+    body { margin:0; font-family: Tahoma, Arial, sans-serif; }
+    .titlebar {
+      background: linear-gradient(#2B6EAD, #1B4F7A);
+      color: white;
+      height: 34px;
+      display:flex;
+      align-items:center;
+      padding: 0 6px;
+      -webkit-user-select: none;
+    }
+    .titlebar .icon { width:20px; height:20px; margin-right:8px; }
+    .titlebar .title { font-weight: bold; font-size: 13px; flex:1; }
+    .window-controls { display:flex; gap:6px; }
+    .window-controls button {
+      background: transparent; border: none; color: white; font-weight: bold;
+      width:34px; height:24px; cursor:pointer;
+    }
+
+    .toolbar {
+      background:#E7EEF9;
+      height:46px;
+      display:flex;
+      align-items:center;
+      padding:6px;
+      gap:6px;
+      border-bottom:1px solid #a3bedf;
+    }
+    .btn {
+      width:32px; height:32px; border:1px solid #9FBFE0; background:linear-gradient(#F6FBFF,#E6F2FF);
+      display:flex; align-items:center; justify-content:center; font-weight:bold; cursor:pointer;
+    }
+    .address {
+      flex:1; height:28px; padding:4px; border:1px solid #9FBFE0; background:white;
+    }
+    #webframe {
+      width:100%; height: calc(100vh - 34px - 46px);
+      border: none;
+      display:block;
+    }
+
+    /* status bar */
+    .statusbar {
+      height:20px; background:#f1f1f1; border-top:1px solid #cfcfcf; padding:2px 6px; font-size:12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="titlebar" id="titlebar">
+    <img src="assets/ie_icon.png" class="icon">
+    <div class="title">Internet Explorer</div>
+    <div class="window-controls">
+      <button id="min">_</button>
+      <button id="max">□</button>
+      <button id="close">✕</button>
+    </div>
+  </div>
+
+  <div class="toolbar">
+    <div class="btn" id="back">◄</div>
+    <div class="btn" id="forward">►</div>
+    <div class="btn" id="refresh">⟳</div>
+    <input id="address" class="address" type="text" value="https://www.youtube.com">
+    <div class="btn" id="go">Go</div>
+  </div>
+
+  <iframe id="webframe" src="https://www.youtube.com" sandbox="allow-scripts allow-forms allow-same-origin allow-popups"></iframe>
+
+  <div class="statusbar" id="status">Ready</div>
+
+  <script>
+    const webframe = document.getElementById('webframe');
+    const address = document.getElementById('address');
+    const status = document.getElementById('status');
+
+    document.getElementById('go').addEventListener('click', () => {
+      let url = address.value.trim();
+      if (!/^https?:\/\//i.test(url)) url = 'https://' + url;
+      webframe.src = url;
+      status.textContent = 'Loading...';
+    });
+
+    document.getElementById('refresh').addEventListener('click', () => webframe.contentWindow.location.reload());
+    document.getElementById('back').addEventListener('click', () => { try { webframe.contentWindow.history.back(); } catch(e){} });
+    document.getElementById('forward').addEventListener('click', () => { try { webframe.contentWindow.history.forward(); } catch(e){} });
+
+    webframe.addEventListener('load', () => {
+      status.textContent = 'Loaded: ' + webframe.contentWindow.location.href;
+      address.value = webframe.contentWindow.location.href;
+      try { document.title = 'Internet Explorer - ' + webframe.contentWindow.document.title; } catch(e) {}
+    });
+
+    document.getElementById('min').addEventListener('click', () => { require('electron').ipcRenderer.send('win-min'); });
+    document.getElementById('max').addEventListener('click', () => { require('electron').ipcRenderer.send('win-max'); });
+    document.getElementById('close').addEventListener('click', () => { require('electron').ipcRenderer.send('win-close'); });
+  </script>
+</body>
+</html>

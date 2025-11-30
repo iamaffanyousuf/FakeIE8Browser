@@ -1,0 +1,30 @@
+{
+  "name": "fake-ie8-browser",
+  "version": "1.0.0",
+  "description": "Fake Internet Explorer 8 style browser (Electron) that uses Chromium to load modern websites (YouTube).",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --win portable --x64"
+  },
+  "author": "Generated for user",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^26.0.0",
+    "electron-builder": "^24.6.0"
+  },
+  "dependencies": {},
+  "build": {
+    "appId": "com.fake.ie8",
+    "productName": "Internet Explorer",
+    "win": {
+      "target": [
+        "portable"
+      ],
+      "requestedExecutionLevel": "user"
+    },
+    "nsis": {
+      "oneClick": false
+    }
+  }
+}
