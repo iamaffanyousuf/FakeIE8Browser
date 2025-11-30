@@ -21,10 +21,8 @@
       "target": [
         "portable"
       ],
-      "requestedExecutionLevel": "user"
-    },
-    "nsis": {
-      "oneClick": false
+      "icon": "assets/ie_icon.png",
+      "requestedExecutionLevel": "asInvoker"
     }
   }
 }
