@@ -1,3 +1,5 @@
+Ahh, was just building windows .exe nothing important vroms...
+
 Fake Internet Explorer 8 - Electron Portable EXE (Ready-to-Build)
 
 What this repo contains
