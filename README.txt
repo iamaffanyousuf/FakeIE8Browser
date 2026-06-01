@@ -1,4 +1,4 @@
-Ahh, was just building windows .exe nothing important vroms...
+Ahh, was just building windows .exe nothing important here, did this to show internet explorer in a video which did not worked out anyway
 
 Fake Internet Explorer 8 - Electron Portable EXE (Ready-to-Build)
 
@@ -7,21 +7,20 @@ What this repo contains
 - A GitHub Actions workflow that builds a Windows portable EXE using electron-builder and uploads the .exe as an artifact.
 - Minimal assets (placeholder icon).
 
-Two ways to get a ready EXE (pick one)
-
-A) No SDK on your PC — use GitHub Actions (recommended if you don't want to install anything)
+A) No SDK on your PC — use GitHub Actions (if you don't want to install anything)
 1. Create a new GitHub repository and upload the entire contents of this folder.
 2. Push to GitHub (or click "Actions" > "Run workflow" > "Build Windows Portable EXE").
 3. The workflow runs on windows-latest, builds the portable EXE, and uploads it as an artifact.
 4. Download the artifact from the workflow run (Actions tab) — that's your ready-to-run EXE. No local SDK required on your PC.
+which I created this to test and look into the github's build
 
 B) Build locally on Windows (requires Node & npm) — minimal setup
-1. Install Node.js (LTS) on your Windows PC: https://nodejs.org/
-2. Open PowerShell, cd to the project folder.
+1. Install Node.js 
+2. Open terminal, cd to the project folder.
 3. Run:
    npm install
    npm run dist
-4. The built EXE will be in the dist folder (electron-builder produces the portable EXE).
+4. The built EXE will be in the dist folder (electron-builder produces the portable EXE). 
 
 Notes & tweaks
 - The app's window title & product name are set to "Internet Explorer". Change productName and appId in package.json if desired.
